@@ -229,21 +229,25 @@
   }
 
   .project-card {
-    background: var(--cream);
+    background: #ffffff; /* Pure white makes it pop against the cream background */
     padding: 36px 32px;
-    /* This makes the movement smooth */
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                background 0.2s ease, 
-                box-shadow 0.3s ease;
-    cursor: default;
-    border: 1px solid var(--rule); /* Defines the box edge */
+    border: 1px solid var(--rule);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smoother curve */
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Very light shadow when sitting still */
   }
 
   .project-card:hover {
-    background: #ffffff; /* Brightens the card slightly */
-    transform: translateY(-12px) scale(1.02); /* Lifts the card and grows it 2% */
-    box-shadow: 0 20px 40px rgba(28, 25, 23, 0.15); /* Adds a deep 3D shadow */
-    z-index: 10; /* Ensures it stays on top of neighbors while rising */
+    transform: translateY(-15px); /* Lifted higher */
+    background: #ffffff;
+    border-color: transparent; /* Remove border to let shadow do the work */
+    
+    /* Layered Shadow: This is the secret to 3D depth */
+    box-shadow: 
+      0 15px 30px rgba(28, 25, 23, 0.1), 
+      0 10px 10px rgba(28, 25, 23, 0.05);
+    
+    z-index: 10;
   }
 
   .project-title {
