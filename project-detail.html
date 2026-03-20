@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Skyé Lowe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=La+Belle+Aurore&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF8F4;
+    --ink: #1C1917;
+    --warm-mid: #78716C;
+    --rule: #E7E3DB;
+    --rust: #9B4B2A;
+    --blue: #4A6FA5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 60px;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 1.9rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+    -webkit-text-stroke: 0.5px var(--ink);
+  }
+
+  .nav-back {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    text-decoration: none;
+    font-weight: 400;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-back:hover { color: var(--ink); border-color: var(--ink); }
+
+  .page-header {
+    padding: 140px 60px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .page-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 3rem;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .projects-detail-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px 120px;
+  }
+
+  .project-detail-item {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 60px;
+    padding: 64px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .project-detail-item:last-child { border-bottom: none; }
+
+  .project-detail-meta {
+    padding-top: 6px;
+  }
+
+  .detail-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    margin-bottom: 12px;
+  }
+
+  .detail-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .detail-title em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .detail-year {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--warm-mid);
+    margin-bottom: 6px;
+  }
+
+  .detail-org {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--warm-mid);
+    font-weight: 300;
+  }
+
+  .project-detail-body {
+    padding-top: 6px;
+  }
+
+  .project-detail-body p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .project-detail-body p:last-of-type { margin-bottom: 28px; }
+
+  .project-detail-body ul {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+
+  .project-detail-body ul li {
+    font-size: 0.9rem;
+    color: var(--warm-mid);
+    font-weight: 300;
+    line-height: 1.7;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .project-detail-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--rule);
+  }
+
+  .detail-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 3px;
+    font-weight: 400;
+    transition: border-color 0.2s ease;
+  }
+  .detail-link:hover { border-color: var(--ink); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-script {
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 1.1rem;
+    color: var(--warm-mid);
+  }
+
+  .footer-copy {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--warm-mid);
+    font-weight: 300;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    .page-header { padding: 120px 24px 40px; }
+    .projects-detail-list { padding: 0 24px 80px; }
+    .project-detail-item { grid-template-columns: 1fr; gap: 24px; }
+    footer { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Skyé</a>
+  <a href="index.html#projects" class="nav-back">← Back to Projects</a>
+</nav>
+
+<div class="page-header fade-in">
+  <p class="page-eyebrow">Skyé Lowe · Work & Research</p>
+  <h1 class="page-title">Projects</h1>
+</div>
+
+<div class="projects-detail-list">
+
+  <div class="project-detail-item fade-in" id="hairchitecture">
+    <div class="project-detail-meta">
+      <div class="detail-tag">Film · Research</div>
+      <h2 class="detail-title"><em>hAiRCHITECTURE</em></h2>
+      <p class="detail-year">2024 – 2025</p>
+      <p class="detail-org">Princeton Research Film Studio</p>
+    </div>
+    <div class="project-detail-body">
+      <p>A research film examining the architecture of Black hair as identity, resistance, and cultural language — co-directed and brought from concept to international exhibition.</p>
+      <p>The film interrogates how Black hair functions as a site of political meaning, aesthetic agency, and communal memory, drawing on archival materials, original interviews, and visual research methods.</p>
+      <ul>
+        <li>Directed end-to-end production managing a 10-member cross-functional team</li>
+        <li>Coordinated resources, timelines, and stakeholder expectations through pre-production and international exhibition</li>
+        <li>Exhibited at the 2025 Venice Art Biennale and Mallorca Art Biennale</li>
+        <li>Implemented milestone tracking and feedback loops to streamline production workflow</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-detail-item fade-in" id="dissonance">
+    <div class="project-detail-meta">
+      <div class="detail-tag">Research · Psychology</div>
+      <h2 class="detail-title">Cognitive Dissonance & Motivation Loss</h2>
+      <p class="detail-year">2024 – Present</p>
+      <p class="detail-org">COOPER Lab, Princeton University</p>
+    </div>
+    <div class="project-detail-body">
+      <p>Junior Paper under Professor Cooper, exploring how identity-behavior conflict leads to motivational disengagement — and what conditions make people double down versus disengage entirely.</p>
+      <p>The paper draws on Festinger's original dissonance theory, Oyserman's identity-based motivation framework, and Covington's self-worth theory to build an integrative account of motivation loss in high-stakes contexts.</p>
+      <ul>
+        <li>Grounded in the Self-Standards Model (Stone & Cooper)</li>
+        <li>Engages empirical literature on academic disengagement, identity conflict, and self-protective cognition</li>
+        <li>Connects behavioral theory to applied questions in law, education, and public health</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-detail-item fade-in" id="reductive">
+    <div class="project-detail-meta">
+      <div class="detail-tag">Research · Statistics</div>
+      <h2 class="detail-title">Replication Study: Reductive Allure Effect</h2>
+      <p class="detail-year">2024</p>
+      <p class="detail-org">PSY300, Princeton University</p>
+    </div>
+    <div class="project-detail-body">
+      <p>A preregistered replication of Hopkins et al. (2016) examining whether neuroscientific language increases the perceived quality of psychological explanations — even when that language adds no real information.</p>
+      <p>The study used R with mixed-effects modeling, and was preregistered on OSF prior to data collection to ensure methodological transparency.</p>
+      <ul>
+        <li>Preregistered on the Open Science Framework (OSF)</li>
+        <li>Mixed-effects modeling in R to account for within-participant variability</li>
+        <li>Examined how framing — not content — shapes how people evaluate scientific explanations</li>
+      </ul>
+      <a href="https://osf.io" target="_blank" class="detail-link">View preregistration on OSF →</a>
+    </div>
+  </div>
+
+  <div class="project-detail-item fade-in" id="rousseau">
+    <div class="project-detail-meta">
+      <div class="detail-tag">Legal · Immigration</div>
+      <h2 class="detail-title">Project Rousseau</h2>
+      <p class="detail-year">June – July 2025</p>
+      <p class="detail-org">New York, NY</p>
+    </div>
+    <div class="project-detail-body">
+      <p>Legal support work in immigration law — managing active client cases, drafting affidavits, and conducting independent statutory research to support attorney case preparation across a multilingual docket.</p>
+      <p>The work required operating across French, Spanish, and Pashto documentation, synthesizing complex legal materials under deadline, and maintaining rigorous organizational standards across an active caseload.</p>
+      <ul>
+        <li>Managed 9+ active immigration cases with multilingual documentation (French, Spanish, Pashto)</li>
+        <li>Drafted affidavits from client interviews conducted in French and Spanish (with interpreter)</li>
+        <li>Researched immigration statutes and case law; reviewed evidentiary filings</li>
+        <li>Synthesized findings into structured memoranda to support attorney workflow</li>
+        <li>Tracked court filing deadlines to ensure timely, court-ready submissions</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-detail-item fade-in" id="sentient">
+    <div class="project-detail-meta">
+      <div class="detail-tag">AI · Law &amp; Ethics</div>
+      <h2 class="detail-title">Sentient Labs — Campus AI Initiative</h2>
+      <p class="detail-year">October 2025 – Present</p>
+      <p class="detail-org">New York, NY</p>
+    </div>
+    <div class="project-detail-body">
+      <p>Campus AI Lead at a Series A company building a platform that coordinates 100+ AI models, with 3M+ users on the waitlist. The role sits at the intersection of product, community, and policy.</p>
+      <p>At Princeton, the work means organizing AI hackathons across student organizations and synthesizing student perspectives on emerging technology directly into product development — with a consistent focus on the legal, ethical, and governance dimensions of AI.</p>
+      <ul>
+        <li>Synthesize student feedback to directly inform product decisions at a high-growth AI company</li>
+        <li>Organize and lead AI hackathons across Princeton student organizations</li>
+        <li>Build cross-community networks around AI law, ethics, and policy</li>
+        <li>Bridge student experience and institutional product strategy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-detail-item fade-in" id="pcc">
+    <div class="project-detail-meta">
+      <div class="detail-tag">Strategy · Community</div>
+      <h2 class="detail-title">PCC Annual Conference Series</h2>
+      <p class="detail-year">2023 – Present</p>
+      <p class="detail-org">Princeton Caribbean Connection</p>
+    </div>
+    <div class="project-detail-body">
+      <p>As Marketing & Outreach Lead for Princeton Caribbean Connection, spearheaded the communications and outreach strategy behind three consecutive annual conferences — building PCC into a recognized voice on Caribbean policy and public life.</p>
+      <p>The conferences drew 150+ attendees across Ivy+ institutions, government offices, and corporate sectors, requiring coordinated outreach strategy, cross-sector stakeholder engagement, and consistent brand voice across all channels.</p>
+      <ul>
+        <li>Led marketing strategy for 3 consecutive annual conferences</li>
+        <li>150+ attendees per conference across Ivy+, government, and corporate sectors</li>
+        <li>Coordinated monthly collaborations with campus cultural organizations</li>
+        <li>Established PCC as a recognized cross-sector voice on Caribbean policy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-detail-item fade-in" id="athletics">
+    <div class="project-detail-meta">
+      <div class="detail-tag">Writing · Media</div>
+      <h2 class="detail-title">Princeton Athletics Digital Media</h2>
+      <p class="detail-year">September 2025 – Present</p>
+      <p class="detail-org">Princeton Varsity Athletics</p>
+    </div>
+    <div class="project-detail-body">
+      <p>Digital Media Coordinator for Princeton Varsity Athletics — managing live reporting, content strategy, and storytelling across Division I events and platforms.</p>
+      <p>The role demands real-time decision-making under pressure, a consistent editorial voice, and the ability to translate fast-moving athletic events into compelling digital content for broad audiences.</p>
+      <ul>
+        <li>Live reporting during high-pressure Division I events with speed and accuracy</li>
+        <li>Partnered with communications and operations teams to streamline content workflows</li>
+        <li>Managed multiple operational priorities simultaneously across events</li>
+        <li>Broadened audience reach through strategic content distribution</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-detail-item fade-in" id="coman">
+    <div class="project-detail-meta">
+      <div class="detail-tag">Research · Data</div>
+      <h2 class="detail-title">Behavioral Modeling, COMAN Lab</h2>
+      <p class="detail-year">July 2025 – Present</p>
+      <p class="detail-org">Princeton University</p>
+    </div>
+    <div class="project-detail-body">
+      <p>Research Analyst building predictive behavioral models to identify statistically significant drivers of consumer decision-making — translating complex quantitative findings into actionable insights for interdisciplinary research teams.</p>
+      <p>The work combines statistical modeling in R with data visualization and dashboard design, supporting iterative experimental design and ongoing study development.</p>
+      <ul>
+        <li>Built predictive models in R identifying drivers of consumer decision-making</li>
+        <li>Designed data visualizations and dashboards in R (ggplot2) and Advanced Excel</li>
+        <li>Cleaned and coded behavioral datasets; presented findings to senior researchers</li>
+        <li>Contributed to iterative experimental design and ongoing study development</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-script">Skyé Lowe</span>
+  <span class="footer-copy">© 2026 · Princeton, NJ</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // scroll to anchor on load
+  window.addEventListener('load', () => {
+    const hash = window.location.hash;
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    }
+  });
+</script>
+</body>
+</html>
