@@ -48,10 +48,12 @@
 
   .nav-logo {
     font-family: 'La Belle Aurore', cursive;
-    font-size: 1.55rem;
+    font-size: 1.9rem;
     color: var(--ink);
     text-decoration: none;
     letter-spacing: 0.01em;
+    font-weight: 700;
+    -webkit-text-stroke: 0.5px var(--ink);
   }
 
   .nav-links {
@@ -104,7 +106,7 @@
     font-style: italic;
     font-family: 'La Belle Aurore', cursive;
     font-size: 0.72em;
-    color: var(--rust);
+    color: #4A6FA5;
     display: block;
     line-height: 1.2;
   }
@@ -244,10 +246,14 @@
   .project-card {
     background: var(--cream);
     padding: 36px 32px;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
     cursor: default;
   }
-  .project-card:hover { background: #F3EFE7; }
+  .project-card:hover {
+    background: #F3EFE7;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+  }
 
   .project-tag {
     font-size: 0.65rem;
@@ -422,6 +428,23 @@
     .acc-org { display: none; }
     footer { padding: 20px 24px; }
   }
+  .word-fade {
+    opacity: 0;
+    transform: translateY(10px);
+    display: inline-block;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .word-fade.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .word-sep {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .word-sep.visible {
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
@@ -441,10 +464,10 @@
   <p class="hero-eyebrow fade-in">Princeton University · Class of 2027</p>
   <h1 class="hero-name fade-in">
     Skyé Lowe
-    <em>researcher, storyteller, strategist</em>
+    <em><span class="word-fade">researcher</span><span class="word-sep">, </span><span class="word-fade">storyteller</span><span class="word-sep">, </span><span class="word-fade">strategist</span></em>
   </h1>
   <p class="hero-tagline fade-in">
-    Psychology major. Pre-law. Native French speaker. I work at the intersection of behavioral science, creative storytelling, and strategic communication — building things that make people think differently.
+    Psychology major. Pre-law. Fluent French speaker. I work at the intersection of behavioral science, creative storytelling, and strategic communication — finding the story in the data, and the argument in the story.
   </p>
   <div class="hero-cta-row fade-in">
     <a href="#projects" class="btn-primary">View My Work</a>
@@ -462,7 +485,7 @@
     <div class="about-bio fade-in">
       I'm a junior at Princeton studying <strong>Psychology</strong> with minors in French Language and Values &amp; Public Life. I'm on a pre-law track, interested in how law intersects with human behavior, identity, and narrative. Outside the classroom, I research, write, direct, and build — sometimes all at once.
       <br><br>
-      My work has been shown at the Venice and Mallorca Art Biennales. I write for student-athletes. I help first-gen students find their voice on the page.
+      My work has been shown at the Venice and Mallorca Art Biennales. I live report for Princeton Varsity Athletics. I help first-gen students find their voice on the page.
     </div>
     <div class="about-details fade-in">
       <div class="detail-item">
@@ -474,16 +497,12 @@
         <div class="detail-value">Psychology · French Language · Values &amp; Public Life</div>
       </div>
       <div class="detail-item">
-        <div class="detail-label">GPA</div>
-        <div class="detail-value">3.8</div>
-      </div>
-      <div class="detail-item">
         <div class="detail-label">Languages</div>
-        <div class="detail-value">English (native) · French (native)</div>
+        <div class="detail-value">English (native) · French (fluent)</div>
       </div>
       <div class="detail-item">
         <div class="detail-label">Currently</div>
-        <div class="detail-value">Writing Fellow · Digital Media Coordinator, Princeton Athletics · Marketing Lead, Princeton Caribbean Connection</div>
+        <div class="detail-value">Writing Fellow · Digital Media Coordinator, Princeton Athletics · Marketing Lead, Princeton Caribbean Connection · Limits Matter Engagement Specialist, Princeton UMatter</div>
       </div>
     </div>
   </div>
@@ -500,43 +519,57 @@
     <div class="project-card fade-in">
       <div class="project-tag">Film · Research</div>
       <h3 class="project-title"><em>hAiRCHITECTURE</em></h3>
-      <p class="project-desc">A research film examining the architecture of Black hair as identity, resistance, and cultural language. Co-directed and exhibited at the 2025 Venice and Mallorca Art Biennales.</p>
-      <a href="#" class="project-link">Learn more →</a>
+      <p class="project-desc">A research film on Black hair as identity and resistance. Exhibited at the 2025 Venice and Mallorca Art Biennales.</p>
+      <a href="project-detail.html#hairchitecture" class="project-link">Learn more →</a>
     </div>
 
     <div class="project-card fade-in">
       <div class="project-tag">Research · Psychology</div>
       <h3 class="project-title">Cognitive Dissonance & Motivation Loss</h3>
-      <p class="project-desc">Junior Paper under Professor Cooper. Explores how identity-behavior conflict leads to disengagement, drawing on Festinger, Oyserman's identity-based motivation, and Covington's self-worth theory.</p>
-      <a href="#" class="project-link">Read abstract →</a>
+      <p class="project-desc">Junior Paper exploring how identity-behavior conflict leads to disengagement, drawing on Festinger, Oyserman, and Covington.</p>
+      <a href="project-detail.html#dissonance" class="project-link">Read abstract →</a>
     </div>
 
     <div class="project-card fade-in">
       <div class="project-tag">Research · Statistics</div>
       <h3 class="project-title">Replication Study: Reductive Allure Effect</h3>
-      <p class="project-desc">Replication of Hopkins et al. (2016) for PSY300, using R, mixed-effects modeling, and preregistration on OSF. Examined how neuroscientific language influences perceived explanatory depth.</p>
-      <a href="#" class="project-link">View on OSF →</a>
+      <p class="project-desc">Replication of Hopkins et al. (2016) using R and mixed-effects modeling. Examined how neuroscientific language shapes perceived explanation.</p>
+      <a href="project-detail.html#reductive" class="project-link">View on OSF →</a>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">Theatre · Climate</div>
-      <h3 class="project-title">Climate Crisis Play (FRE-THR 388)</h3>
-      <p class="project-desc">Wrote and translated a six-scene French-language play exploring climate grief, community, and agency. Part of an interdisciplinary environmental humanities course.</p>
-      <a href="#" class="project-link">Read excerpt →</a>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-tag">Legal · Community</div>
+      <div class="project-tag">Legal · Immigration</div>
       <h3 class="project-title">Project Rousseau</h3>
-      <p class="project-desc">Case support work in immigration law, assisting attorneys with legal research and client documentation for asylum seekers and immigration proceedings.</p>
-      <a href="#" class="project-link">Learn more →</a>
+      <p class="project-desc">Immigration case support — affidavit drafting, multilingual documentation, and statutory research across 9+ active client cases.</p>
+      <a href="project-detail.html#rousseau" class="project-link">Learn more →</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-tag">AI · Law &amp; Ethics</div>
+      <h3 class="project-title">Sentient Labs — Campus AI Initiative</h3>
+      <p class="project-desc">Campus AI Lead at a Series A company with 3M+ waitlisted users. Organizing AI hackathons and shaping product through student feedback.</p>
+      <a href="project-detail.html#sentient" class="project-link">Learn more →</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-tag">Strategy · Community</div>
+      <h3 class="project-title">PCC Annual Conference Series</h3>
+      <p class="project-desc">Led marketing for 3 consecutive conferences drawing 150+ attendees across Ivy+, government, and corporate sectors.</p>
+      <a href="project-detail.html#pcc" class="project-link">Learn more →</a>
     </div>
 
     <div class="project-card fade-in">
       <div class="project-tag">Writing · Media</div>
       <h3 class="project-title">Princeton Athletics Digital Media</h3>
-      <p class="project-desc">Coordinate digital storytelling and content strategy for Princeton Varsity Athletics — writing features, managing social presence, and amplifying student-athlete voices.</p>
-      <a href="#" class="project-link">See work →</a>
+      <p class="project-desc">Live reporting and digital storytelling for Princeton Varsity Athletics — content strategy, social presence, student-athlete voices.</p>
+      <a href="project-detail.html#athletics" class="project-link">See work →</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-tag">Research · Psychology</div>
+      <h3 class="project-title">Behavioral Modeling, COMAN Lab</h3>
+      <p class="project-desc">Building predictive behavioral models in R to identify drivers of consumer decision-making, with ggplot2 dashboards for research teams.</p>
+      <a href="project-detail.html#coman" class="project-link">Learn more →</a>
     </div>
 
   </div>
@@ -551,33 +584,57 @@
   <div class="accomplishments-list">
 
     <div class="accomplishment-row fade-in">
+      <span class="acc-year">2026–</span>
+      <span class="acc-title">Health Promotion Engagement Specialist, UMatter</span>
+      <span class="acc-org">Princeton University</span>
+    </div>
+
+    <div class="accomplishment-row fade-in">
+      <span class="acc-year">2025–</span>
+      <span class="acc-title">Digital Media Coordinator, Princeton Varsity Athletics</span>
+      <span class="acc-org">Princeton University</span>
+    </div>
+
+    <div class="accomplishment-row fade-in">
+      <span class="acc-year">2025–</span>
+      <span class="acc-title">Campus AI Lead, Sentient Labs</span>
+      <span class="acc-org">New York, NY</span>
+    </div>
+
+    <div class="accomplishment-row fade-in">
+      <span class="acc-year">2025–</span>
+      <span class="acc-title">Behavioral Research, COMAN Lab</span>
+      <span class="acc-org">Princeton University</span>
+    </div>
+
+    <div class="accomplishment-row fade-in">
       <span class="acc-year">2025</span>
       <span class="acc-title">Venice &amp; Mallorca Art Biennales — <em style="font-style:italic; color:var(--warm-mid);">hAiRCHITECTURE</em> exhibited</span>
       <span class="acc-org">International</span>
     </div>
 
     <div class="accomplishment-row fade-in">
+      <span class="acc-year">2025</span>
+      <span class="acc-title">Legal Intern, Project Rousseau</span>
+      <span class="acc-org">New York, NY</span>
+    </div>
+
+    <div class="accomplishment-row fade-in">
       <span class="acc-year">2024–</span>
-      <span class="acc-title">Writing Fellow, University Writing Center</span>
+      <span class="acc-title">Named Writing Fellow, University Writing Center</span>
       <span class="acc-org">Princeton University</span>
     </div>
 
     <div class="accomplishment-row fade-in">
       <span class="acc-year">2024–</span>
-      <span class="acc-title">Digital Media Coordinator, Princeton Varsity Athletics</span>
+      <span class="acc-title">Behavioral Research, COOPER Lab</span>
       <span class="acc-org">Princeton University</span>
     </div>
 
     <div class="accomplishment-row fade-in">
       <span class="acc-year">2024–</span>
-      <span class="acc-title">Marketing &amp; Outreach Lead, Princeton Caribbean Connection</span>
+      <span class="acc-title">Associate Director, OneStudio — University Student Agencies</span>
       <span class="acc-org">Princeton University</span>
-    </div>
-
-    <div class="accomplishment-row fade-in">
-      <span class="acc-year">2024</span>
-      <span class="acc-title">Preregistered Replication Study — OSF</span>
-      <span class="acc-org">PSY300</span>
     </div>
 
     <div class="accomplishment-row fade-in">
@@ -588,13 +645,7 @@
 
     <div class="accomplishment-row fade-in">
       <span class="acc-year">2023–</span>
-      <span class="acc-title">Behavioral Research, COMAN &amp; COOPER Labs</span>
-      <span class="acc-org">Princeton University</span>
-    </div>
-
-    <div class="accomplishment-row fade-in">
-      <span class="acc-year">2023–</span>
-      <span class="acc-title">3.8 GPA, Dean's List standing</span>
+      <span class="acc-title">Marketing &amp; Outreach Lead, Princeton Caribbean Connection</span>
       <span class="acc-org">Princeton University</span>
     </div>
 
@@ -605,11 +656,11 @@
 <section id="contact">
   <div class="contact-inner">
     <div class="contact-script fade-in">let's connect</div>
-    <p class="contact-sub fade-in">I'm always open to interesting conversations — research, law, media, creative work, or just a good exchange of ideas.</p>
+    <p class="contact-sub fade-in">Find me on the links below — always happy to connect.</p>
     <div class="contact-links fade-in">
-      <a href="mailto:slowe@princeton.edu">Email</a>
-      <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
-      <a href="#" target="_blank">Resume</a>
+      <a href="/cdn-cgi/l/email-protection#8bf8e0f2eee7e4fceecbe2e8e7e4feefa5e8e4e6">Email</a>
+      <a href="https://www.linkedin.com/in/skyélowe" target="_blank">LinkedIn</a>
+      <a href="/cdn-cgi/l/email-protection#cab9a1b3afa6a5bdaf8aa3a9a6a5bfaee4a9a5a7f5b9bfa8a0afa9bef798afb9bfa7afeff8fa98afbbbfafb9beeca8a5aeb3f782a3eff8fa99a1b30963eff889eff8fa83eff8fdaeeff8faa6a5bcafeff8fabea5eff8fab9afafeff8fab3a5bfb8eff8fab8afb9bfa7afe4" class="resume-request">Request Resume</a>
     </div>
   </div>
 </section>
@@ -635,6 +686,18 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // staggered word fade for hero tagline
+  const words = document.querySelectorAll('.word-fade');
+  const seps = document.querySelectorAll('.word-sep');
+  setTimeout(() => {
+    words.forEach((word, i) => {
+      setTimeout(() => {
+        word.classList.add('visible');
+        if (seps[i]) setTimeout(() => seps[i].classList.add('visible'), 200);
+      }, 600 + i * 350);
+    });
+  }, 400);
 </script>
 </body>
 </html>
