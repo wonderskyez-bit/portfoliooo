@@ -6,7 +6,7 @@
 <title>Skyé Lowe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Upright:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=La+Belle+Aurore&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Upright:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700;1,9..40,300&family=La+Belle+Aurore&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -68,9 +68,9 @@
     color: var(--warm-mid);
     text-decoration: none;
     font-weight: 400;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, font-weight 0.1s ease;
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: #4A6FA5; font-weight: 700; }
 
   /* HERO */
   #home {
@@ -407,11 +407,61 @@
     font-weight: 300;
   }
 
+  /* SHINE on hero name — clean single sweep */
+  @keyframes shine-sweep {
+    0%   { left: -60%; opacity: 1; }
+    100% { left: 130%; opacity: 1; }
+  }
+
+  .hero-name {
+    position: relative;
+  }
+
+  .hero-name .shine-text {
+    position: relative;
+    display: inline-block;
+    color: #1C1917;
+    overflow: hidden;
+  }
+
+  .hero-name .shine-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(255, 246, 210, 0.55) 50%,
+      transparent 80%
+    );
+    animation: shine-sweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+    animation-delay: 0.6s;
+    animation-fill-mode: forwards;
+    pointer-events: none;
+  }
+
+  /* SMOOTH scroll-linked transitions */
+  html { scroll-behavior: smooth; }
+
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  a, button { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+  .project-card {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.35s ease !important;
+  }
+
   /* ANIMATIONS */
   .fade-in {
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(22px);
+    transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .fade-in.visible {
     opacity: 1;
@@ -463,7 +513,7 @@
 <section id="home">
   <p class="hero-eyebrow fade-in">Princeton University · Class of 2027</p>
   <h1 class="hero-name fade-in">
-    Skyé Lowe
+    <span class="shine-text">Skyé Lowe</span>
     <em><span class="word-fade">researcher</span><span class="word-sep">, </span><span class="word-fade">storyteller</span><span class="word-sep">, </span><span class="word-fade">strategist</span></em>
   </h1>
   <p class="hero-tagline fade-in">
@@ -658,9 +708,9 @@
     <div class="contact-script fade-in">let's connect</div>
     <p class="contact-sub fade-in">Find me on the links below — always happy to connect.</p>
     <div class="contact-links fade-in">
-      <a href="mailto:skyelowe@icloud.com">Email</a>
-      <a href="https://www.linkedin.com/in/sky%C3%A9lowe" target="_blank">LinkedIn</a>
-      <a href="mailto:skyelowe@icloud.com?subject=Resume%20Request&body=Hi%20Sky%C3%A9%2C%0A%0AI%27d%20love%20to%20request%20a%20copy%20of%20your%20resume.%0A%0AThank%20you!" class="resume-request">Request Resume</a>
+      <a href="/cdn-cgi/l/email-protection#8bf8e0f2eee7e4fceecbe2e8e7e4feefa5e8e4e6">Email</a>
+      <a href="https://www.linkedin.com/in/skyélowe" target="_blank">LinkedIn</a>
+      <a href="/cdn-cgi/l/email-protection#cab9a1b3afa6a5bdaf8aa3a9a6a5bfaee4a9a5a7f5b9bfa8a0afa9bef798afb9bfa7afeff8fa98afbbbfafb9beeca8a5aeb3f782a3eff8fa99a1b30963eff889eff8fa83eff8fdaeeff8faa6a5bcafeff8fabea5eff8fab9afafeff8fab3a5bfb8eff8fab8afb9bfa7afe4" class="resume-request">Request Resume</a>
     </div>
   </div>
 </section>
