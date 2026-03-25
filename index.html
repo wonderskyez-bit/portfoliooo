@@ -90,10 +90,7 @@
     width: 100%;
   }
 
-  .hero-text {
-    display: flex;
-    flex-direction: column;
-  }
+  .hero-text { display: flex; flex-direction: column; }
 
   .hero-eyebrow {
     font-size: 0.72rem;
@@ -153,19 +150,13 @@
     aspect-ratio: 3 / 4;
     border-radius: 18px;
     overflow: hidden;
-    box-shadow:
-      6px 12px 36px rgba(28, 25, 23, 0.13),
-      0 2px 6px rgba(28, 25, 23, 0.06);
+    box-shadow: 6px 12px 36px rgba(28,25,23,0.13), 0 2px 6px rgba(28,25,23,0.06);
     transition: box-shadow 0.35s ease, transform 0.35s ease;
   }
-
   .hero-photo-frame:hover {
     transform: translateY(-4px);
-    box-shadow:
-      8px 20px 48px rgba(28, 25, 23, 0.16),
-      0 4px 10px rgba(28, 25, 23, 0.07);
+    box-shadow: 8px 20px 48px rgba(28,25,23,0.16), 0 4px 10px rgba(28,25,23,0.07);
   }
-
   .hero-photo-frame img {
     width: 100%;
     height: 100%;
@@ -249,23 +240,15 @@
     line-height: 1.75;
     color: var(--ink);
   }
-
   .about-bio strong {
     font-style: italic;
     font-weight: 400;
     color: var(--rust);
   }
 
-  .about-details {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
+  .about-details { display: flex; flex-direction: column; gap: 28px; }
 
-  .detail-item {
-    border-left: 1px solid var(--rule);
-    padding-left: 20px;
-  }
+  .detail-item { border-left: 1px solid var(--rule); padding-left: 20px; }
   .detail-label {
     font-size: 0.68rem;
     letter-spacing: 0.18em;
@@ -293,6 +276,7 @@
   .project-card {
     background: var(--cream);
     padding: 36px 32px;
+    transition: background 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
     cursor: default;
   }
   .project-card:hover {
@@ -318,7 +302,6 @@
     color: var(--ink);
     margin-bottom: 12px;
   }
-
   .project-title em { font-style: italic; color: var(--rust); }
 
   .project-desc {
@@ -362,14 +345,12 @@
     font-weight: 400;
     font-family: 'DM Sans', sans-serif;
   }
-
   .acc-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.15rem;
     font-weight: 400;
     color: var(--ink);
   }
-
   .acc-org {
     font-size: 0.72rem;
     letter-spacing: 0.1em;
@@ -384,9 +365,7 @@
     text-align: center;
     padding: 100px 60px 120px;
   }
-
   .contact-inner { max-width: 480px; margin: 0 auto; }
-
   .contact-script {
     font-family: 'La Belle Aurore', cursive;
     font-size: 3.2rem;
@@ -394,7 +373,6 @@
     margin-bottom: 16px;
     line-height: 1.1;
   }
-
   .contact-sub {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
@@ -403,14 +381,12 @@
     line-height: 1.7;
     margin-bottom: 36px;
   }
-
   .contact-links {
     display: flex;
     justify-content: center;
     gap: 32px;
     flex-wrap: wrap;
   }
-
   .contact-links a {
     font-size: 0.72rem;
     letter-spacing: 0.16em;
@@ -432,13 +408,11 @@
     justify-content: space-between;
     align-items: center;
   }
-
   .footer-script {
     font-family: 'La Belle Aurore', cursive;
     font-size: 1.1rem;
     color: var(--warm-mid);
   }
-
   .footer-copy {
     font-size: 0.7rem;
     letter-spacing: 0.1em;
@@ -446,45 +420,33 @@
     font-weight: 300;
   }
 
-  /* SHINE on hero name */
+  /* SHINE */
   @keyframes shine-sweep {
     0%   { left: -60%; opacity: 1; }
     100% { left: 130%; opacity: 1; }
   }
-
   .hero-name .shine-text {
     position: relative;
     display: inline-block;
     color: #1C1917;
     overflow: hidden;
   }
-
   .hero-name .shine-text::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: -60%;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(
-      105deg,
-      transparent 20%,
-      rgba(255, 246, 210, 0.55) 50%,
-      transparent 80%
-    );
-    animation: shine-sweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+    top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(105deg, transparent 20%, rgba(255,246,210,0.55) 50%, transparent 80%);
+    animation: shine-sweep 2.8s cubic-bezier(0.4,0,0.2,1) 1 forwards;
     animation-delay: 0.6s;
-    animation-fill-mode: forwards;
     pointer-events: none;
   }
 
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-  a, button { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-
+  a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   .project-card {
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+                box-shadow 0.35s cubic-bezier(0.4,0,0.2,1),
                 border-color 0.35s ease !important;
   }
 
@@ -492,8 +454,8 @@
   .fade-in {
     opacity: 0;
     transform: translateY(22px);
-    transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.75s cubic-bezier(0.4,0,0.2,1),
+                transform 0.75s cubic-bezier(0.4,0,0.2,1);
   }
   .fade-in.visible { opacity: 1; transform: none; }
 
@@ -511,15 +473,9 @@
   @media (max-width: 768px) {
     nav { padding: 18px 24px; }
     section, #home { padding: 80px 24px 60px; }
-    .hero-inner {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
     .hero-photo-col { order: -1; }
-    .hero-photo-frame {
-      max-width: 220px;
-      margin: 0 auto;
-    }
+    .hero-photo-frame { max-width: 220px; margin: 0 auto; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .projects-grid { grid-template-columns: 1fr; }
     .accomplishment-row { grid-template-columns: 70px 1fr; }
@@ -558,7 +514,6 @@
         <a href="#contact" class="btn-ghost">Get in Touch</a>
       </div>
     </div>
-
     <div class="hero-photo-col fade-in">
       <div class="hero-photo-frame">
         <img src="skye_lowe.png" alt="Skyé Lowe" />
@@ -750,9 +705,9 @@
     <div class="contact-script fade-in">let's connect</div>
     <p class="contact-sub fade-in">Find me on the links below — always happy to connect.</p>
     <div class="contact-links fade-in">
-      <a href="/cdn-cgi/l/email-protection#dcafb7a5b9b0b3abb99cb5bfb0b3a9b8f2bfb3b1">Email</a>
+      <a href="mailto:skyelowe@icloud.com">Email</a>
       <a href="https://www.linkedin.com/in/skyélowe" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#4b3820322e27243c2e0b222827243e2f6528242674383e29212e283f76192e383e262e6e797b192e3a3e2e383f6d29242f327603226e797b1820326e08786e0a726e79086e797b026e797c2f6e797b27243d2e6e797b3f246e797b382e2e6e797b32243e396e797b392e383e262e6a" class="resume-request">Request Resume</a>
+      <a href="mailto:skyelowe@icloud.com?subject=Resume%20Request&body=Hi%20Sky%C3%A9%2C%20I%27d%20love%20to%20see%20your%20resume!">Request Resume</a>
     </div>
   </div>
 </section>
@@ -762,7 +717,7 @@
   <span class="footer-copy">© 2026 · Princeton, NJ</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 30);
@@ -780,4 +735,15 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   const words = document.querySelectorAll('.word-fade');
-  const seps = document.querySelectorA
+  const seps = document.querySelectorAll('.word-sep');
+  setTimeout(() => {
+    words.forEach((word, i) => {
+      setTimeout(() => {
+        word.classList.add('visible');
+        if (seps[i]) setTimeout(() => seps[i].classList.add('visible'), 200);
+      }, 600 + i * 350);
+    });
+  }, 400);
+</script>
+</body>
+</html>
