@@ -30,7 +30,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -70,7 +69,6 @@
   .nav-links a:hover { color: var(--blue); }
   .nav-links a.active { color: var(--ink); font-weight: 700; }
 
-  /* PAGE HEADER */
   .page-header {
     padding: 140px 60px 56px;
     max-width: 1100px;
@@ -96,7 +94,6 @@
     font-style: italic;
   }
 
-  /* GALLERY */
   .gallery-section {
     max-width: 1100px;
     margin: 0 auto;
@@ -118,28 +115,22 @@
     transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
                 box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
   }
-
   .gallery-item:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 32px rgba(28,25,23,0.13);
   }
-
   .gallery-item img {
     width: 100%;
     height: auto;
     display: block;
   }
-
   .gallery-item .overlay {
     position: absolute;
     inset: 0;
     background: rgba(28,25,23,0);
     transition: background 0.3s ease;
   }
-
-  .gallery-item:hover .overlay {
-    background: rgba(28,25,23,0.12);
-  }
+  .gallery-item:hover .overlay { background: rgba(28,25,23,0.12); }
 
   /* LIGHTBOX */
   .lightbox {
@@ -163,7 +154,6 @@
     align-items: center;
     justify-content: center;
   }
-
   .lightbox-inner img {
     max-width: 100%;
     max-height: 85vh;
@@ -174,8 +164,7 @@
 
   .lightbox-close {
     position: fixed;
-    top: 28px;
-    right: 40px;
+    top: 28px; right: 40px;
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -206,7 +195,6 @@
   .lightbox-nav.prev { left: 20px; }
   .lightbox-nav.next { right: 20px; }
 
-  /* FOOTER */
   footer {
     border-top: 1px solid var(--rule);
     padding: 24px 60px;
@@ -226,7 +214,6 @@
     font-weight: 300;
   }
 
-  /* ANIMATIONS */
   .fade-in {
     opacity: 0;
     transform: translateY(18px);
@@ -234,7 +221,6 @@
   }
   .fade-in.visible { opacity: 1; transform: none; }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) { .gallery-grid { columns: 2; } }
   @media (max-width: 768px) {
     nav { padding: 18px 24px; }
@@ -272,42 +258,42 @@
   <div class="gallery-grid" id="galleryGrid">
 
     <div class="gallery-item fade-in" onclick="openLightbox(0)">
-      <img src="IMG_0923.JPG" alt="Ocean at dusk" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_0923.jpg" alt="Ocean at dusk" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
     <div class="gallery-item fade-in" onclick="openLightbox(1)">
-      <img src="IMG_8849.jpeg" alt="Coastal cliffs, South of France" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_8849.jpeg" alt="Coastal cliffs, South of France" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
     <div class="gallery-item fade-in" onclick="openLightbox(2)">
-      <img src="IMG_0297.JPG" alt="Street in Aix-en-Provence" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_0297.jpg" alt="Street in Aix-en-Provence" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
     <div class="gallery-item fade-in" onclick="openLightbox(3)">
-      <img src="IMG_0256.JPG" alt="Place des Vosges, Paris" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_0256.jpg" alt="Place des Vosges, Paris" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
     <div class="gallery-item fade-in" onclick="openLightbox(4)">
-      <img src="IMG_9414.JPG" alt="Skater, Washington Square Park" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_9414.jpg" alt="Skater, Washington Square Park" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
     <div class="gallery-item fade-in" onclick="openLightbox(5)">
-      <img src="IMG_0596.JPG" alt="Rooftops, Avignon" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_0596.jpg" alt="Rooftops, Avignon" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
     <div class="gallery-item fade-in" onclick="openLightbox(6)">
-      <img src="IMG_0598.JPG" alt="Overlooking the city" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_0598.jpg" alt="Overlooking the city" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
     <div class="gallery-item fade-in" onclick="openLightbox(7)">
-      <img src="IMG_0655.JPG" alt="Evening boulevard, Lyon" loading="lazy" />
+      <img src="iloveimg-compressed/IMG_0655.jpg" alt="Evening boulevard, Lyon" loading="lazy" />
       <div class="overlay"></div>
     </div>
 
@@ -341,14 +327,14 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   const images = [
-    { src: 'IMG_0923.JPG',  alt: 'Ocean at dusk' },
-    { src: 'IMG_8849.jpeg', alt: 'Coastal cliffs, South of France' },
-    { src: 'IMG_0297.JPG',  alt: 'Street in Aix-en-Provence' },
-    { src: 'IMG_0256.JPG',  alt: 'Place des Vosges, Paris' },
-    { src: 'IMG_9414.JPG',  alt: 'Skater, Washington Square Park' },
-    { src: 'IMG_0596.JPG',  alt: 'Rooftops, Avignon' },
-    { src: 'IMG_0598.JPG',  alt: 'Overlooking the city' },
-    { src: 'IMG_0655.JPG',  alt: 'Evening boulevard, Lyon' },
+    { src: 'iloveimg-compressed/IMG_0923.jpg',  alt: 'Ocean at dusk' },
+    { src: 'iloveimg-compressed/IMG_8849.jpeg', alt: 'Coastal cliffs, South of France' },
+    { src: 'iloveimg-compressed/IMG_0297.jpg',  alt: 'Street in Aix-en-Provence' },
+    { src: 'iloveimg-compressed/IMG_0256.jpg',  alt: 'Place des Vosges, Paris' },
+    { src: 'iloveimg-compressed/IMG_9414.jpg',  alt: 'Skater, Washington Square Park' },
+    { src: 'iloveimg-compressed/IMG_0596.jpg',  alt: 'Rooftops, Avignon' },
+    { src: 'iloveimg-compressed/IMG_0598.jpg',  alt: 'Overlooking the city' },
+    { src: 'iloveimg-compressed/IMG_0655.jpg',  alt: 'Evening boulevard, Lyon' },
   ];
 
   let current = 0;
