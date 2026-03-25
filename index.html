@@ -281,32 +281,66 @@
     line-height: 1.55;
   }
 
-  /* PROJECTS */
+  /* 3D PROJECTS SECTION */
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
+    gap: 32px; /* Increased gap so boxes don't hit each other when spinning */
+    perspective: 1500px; /* This creates the 3D "camera" distance */
+    background: transparent;
+    border: none;
   }
 
   .project-card {
-    background: var(--cream);
-    padding: 36px 32px;
-    cursor: default;
-  }
-  .project-card:hover {
-    background: #F3EFE7;
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+    height: 340px; /* Fixed height is required for a clean flip */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
   }
 
+  /* 3D ACTION: Rotate and Zoom forward */
+ .project-card:hover {
+    transform: rotateY(180deg) translateZ(80px);
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
+  }
+ 
+  /* Setup for Front and Back Faces */
+  .project-front, .project-back {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding: 36px 32px;
+    border: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--cream);
+  }
+
+  .project-front {
+    /* Existing front styling */
+    z-index: 2;
+  }
+
+  .project-back {
+    background: #F3EFE7; /* Slightly darker cream for contrast */
+    transform: rotateY(180deg); /* Pre-flip the back so it's hidden */
+    border-color: var(--rust);
+    text-align: center;
+    z-index: 1;
+  }
+
+  /* Internal Typography */
   .project-tag {
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--warm-mid);
-    font-weight: 400;
     margin-bottom: 14px;
   }
 
@@ -319,28 +353,18 @@
     margin-bottom: 12px;
   }
 
-  .project-title em { font-style: italic; color: var(--rust); }
-
   .project-desc {
     font-size: 0.87rem;
     color: var(--warm-mid);
-    font-weight: 300;
     line-height: 1.7;
-    margin-bottom: 20px;
   }
 
-  .project-link {
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+  .project-back-text {
+    font-size: 0.95rem;
     color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 2px;
-    font-weight: 400;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    line-height: 1.6;
+    font-family: 'DM Sans', sans-serif;
   }
-  .project-link:hover { border-color: var(--ink); }
 
   /* ACCOMPLISHMENTS */
   .accomplishments-list { display: flex; flex-direction: column; gap: 0; }
@@ -508,23 +532,30 @@
   .word-sep.visible { opacity: 1; }
 
   /* RESPONSIVE */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 18px 24px; }
     section, #home { padding: 80px 24px 60px; }
-    .hero-inner {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
     .hero-photo-col { order: -1; }
-    .hero-photo-frame {
-      max-width: 220px;
-      margin: 0 auto;
-    }
+    .hero-photo-frame { max-width: 220px; margin: 0 auto; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .projects-grid { grid-template-columns: 1fr; }
+    
+    /* 3D Mobile Fix: Stack instead of flip */
+    .projects-grid { grid-template-columns: 1fr; gap: 20px; perspective: none; }
+    .project-card { height: auto; transform: none !important; margin-bottom: 30px; }
+    .project-front, .project-back {
+      position: relative;
+      transform: none !important;
+      backface-visibility: visible;
+      height: auto;
+      padding: 24px;
+    }
+    .project-back { margin-top: -1px; }
+
     .accomplishment-row { grid-template-columns: 70px 1fr; }
     .acc-org { display: none; }
-    footer { padding: 20px 24px; }
+    footer { padding: 20px 24px; flex-direction: column; text-align: center; gap: 10px; }
   }
 </style>
 </head>
@@ -608,59 +639,131 @@
   <div class="projects-grid">
 
     <div class="project-card fade-in">
-      <div class="project-tag">Film · Research</div>
-      <h3 class="project-title"><em>hAiRCHITECTURE</em></h3>
-      <p class="project-desc">A research film on Black hair as identity and resistance. Exhibited at the 2025 Venice and Mallorca Art Biennales.</p>
-      <a href="project-detail.html#hairchitecture" class="project-link">Learn more →</a>
+      <div class="project-front">
+        <div class="project-tag">Film · Research</div>
+        <h3 class="project-title"><em>hAiRCHITECTURE</em></h3>
+        <p class="project-desc">A research film on Black hair as identity and resistance.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Exhibited at the 2025 Venice and Mallorca Art Biennales. Explores the intersection of architectural form and psychological identity.</p>
+          <br>
+          <a href="project-detail.html#hairchitecture" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">View Gallery</a>
+        </div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">Research · Psychology</div>
-      <h3 class="project-title">Cognitive Dissonance & Motivation Loss</h3>
-      <p class="project-desc">Junior Paper exploring how identity-behavior conflict leads to disengagement, drawing on Festinger, Oyserman, and Covington.</p>
-      <a href="project-detail.html#dissonance" class="project-link">Read abstract →</a>
+      <div class="project-front">
+        <div class="project-tag">Research · Psychology</div>
+        <h3 class="project-title">Cognitive Dissonance</h3>
+        <p class="project-desc">Junior Paper exploring identity-behavior conflict and motivation loss.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Analyzing how internal conflict leads to academic disengagement, drawing on Festinger, Oyserman, and Covington.</p>
+          <br>
+          <a href="project-detail.html#dissonance" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">Read Abstract</a>
+        </div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">Research · Statistics</div>
-      <h3 class="project-title">Replication Study: Reductive Allure Effect</h3>
-      <p class="project-desc">Replication of Hopkins et al. (2016) using R and mixed-effects modeling. Examined how neuroscientific language shapes perceived explanation.</p>
-      <a href="project-detail.html#reductive" class="project-link">View on OSF →</a>
+      <div class="project-front">
+        <div class="project-tag">Research · Statistics</div>
+        <h3 class="project-title">Reductive Allure Effect</h3>
+        <p class="project-desc">Replication of Hopkins et al. (2016) using R and mixed-effects modeling.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Examined how neuroscientific language shapes perceived explanation quality. Modeled using R and ggplot2.</p>
+          <br>
+          <a href="project-detail.html#reductive" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">View on OSF</a>
+        </div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">Legal · Immigration</div>
-      <h3 class="project-title">Project Rousseau</h3>
-      <p class="project-desc">Immigration case support — affidavit drafting, multilingual documentation, and statutory research across 9+ active client cases.</p>
-      <a href="project-detail.html#rousseau" class="project-link">Learn more →</a>
+      <div class="project-front">
+        <div class="project-tag">Legal · Immigration</div>
+        <h3 class="project-title">Project Rousseau</h3>
+        <p class="project-desc">Immigration case support and statutory research across 9+ active cases.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Affidavit drafting and multilingual documentation for asylum seekers and immigration legal support.</p>
+          <br>
+          <a href="project-detail.html#rousseau" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">Learn More</a>
+        </div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">AI · Law &amp; Ethics</div>
-      <h3 class="project-title">Sentient Labs — Campus AI Initiative</h3>
-      <p class="project-desc">Campus AI Lead at a Series A company with 3M+ waitlisted users. Organizing AI hackathons and shaping product through student feedback.</p>
-      <a href="project-detail.html#sentient" class="project-link">Learn more →</a>
+      <div class="project-front">
+        <div class="project-tag">AI · Law & Ethics</div>
+        <h3 class="project-title">Sentient Labs</h3>
+        <p class="project-desc">Campus AI Lead shaping product through student feedback and hackathons.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Leading the campus initiative for a Series A AI company with a 3M+ user waitlist. Focus on ethics and adoption.</p>
+          <br>
+          <a href="project-detail.html#sentient" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">Learn More</a>
+        </div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">Strategy · Community</div>
-      <h3 class="project-title">PCC Annual Conference Series</h3>
-      <p class="project-desc">Led marketing for 3 consecutive conferences drawing 150+ attendees across Ivy+, government, and corporate sectors.</p>
-      <a href="project-detail.html#pcc" class="project-link">Learn more →</a>
+      <div class="project-front">
+        <div class="project-tag">Strategy · Community</div>
+        <h3 class="project-title">PCC Conference Series</h3>
+        <p class="project-desc">Led marketing for conferences drawing 150+ Ivy+ attendees.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Coordinated outreach across government and corporate sectors to foster Caribbean professional networks.</p>
+          <br>
+          <a href="project-detail.html#pcc" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">View Strategy</a>
+        </div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">Writing · Media</div>
-      <h3 class="project-title">Princeton Athletics Digital Media</h3>
-      <p class="project-desc">Live reporting and digital storytelling for Princeton Varsity Athletics — content strategy, social presence, student-athlete voices.</p>
-      <a href="project-detail.html#athletics" class="project-link">See work →</a>
+      <div class="project-front">
+        <div class="project-tag">Writing · Media</div>
+        <h3 class="project-title">Princeton Athletics</h3>
+        <p class="project-desc">Live reporting and digital storytelling for Varsity Athletics.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Developing content strategies and social presence to highlight the voices of student-athletes.</p>
+          <br>
+          <a href="project-detail.html#athletics" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">See Work</a>
+        </div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
-      <div class="project-tag">Research · Psychology</div>
-      <h3 class="project-title">Behavioral Modeling, COMAN Lab</h3>
-      <p class="project-desc">Building predictive behavioral models in R to identify drivers of consumer decision-making, with ggplot2 dashboards for research teams.</p>
-      <a href="project-detail.html#coman" class="project-link">Learn more →</a>
+      <div class="project-front">
+        <div class="project-tag">Research · Psychology</div>
+        <h3 class="project-title">COMAN Lab Modeling</h3>
+        <p class="project-desc">Predictive behavioral models identifying drivers of decision-making.</p>
+        <span class="project-link">Hover to expand →</span>
+      </div>
+      <div class="project-back">
+        <div class="project-back-text">
+          <p>Built using R and ggplot2 dashboards to visualize data for research teams and consumer insights.</p>
+          <br>
+          <a href="project-detail.html#coman" class="btn-primary" style="padding: 8px 15px; font-size: 0.65rem;">Learn More</a>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -749,12 +852,11 @@
     <div class="contact-script fade-in">let's connect</div>
     <p class="contact-sub fade-in">Find me on the links below — always happy to connect.</p>
     <div class="contact-links fade-in">
-      <a href="/cdn-cgi/l/email-protection#8bf8e0f2eee7e4fceecbe2e8e7e4feefa5e8e4e6">Email</a>
-      <a href="https://www.linkedin.com/in/skyélowe" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#cab9a1b3afa6a5bdaf8aa3a9a6a5bfaee4a9a5a7f5b9bfa8a0afa9bef798afb9bfa7afeff8fa98afbbbfafb9beeca8a5aeb3f782a3eff8fa99a1b30963eff889eff8fa83eff8fdaeeff8faa6a5bcafeff8fabea5eff8fab9afafeff8fab3a5bfb8eff8fab8afb9bfa7afe4" class="resume-request">Request Resume</a>
+      <a href="mailto:skyelowe@icloud.com">Email</a>
+      <a href="https://www.linkedin.com/in/skyelowe" target="_blank">LinkedIn</a>
+      <a href="mailto:skyelowe@icloud.com?subject=Resume Request - Skyé Lowe">Request Resume</a>
     </div>
-  </div>
-</section>
+  </div> </section>
 
 <footer>
   <span class="footer-script">Skyé Lowe</span>
