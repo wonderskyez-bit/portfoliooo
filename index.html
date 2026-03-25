@@ -76,11 +76,23 @@
   #home {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
     padding: 120px 60px 80px;
     max-width: 1100px;
     margin: 0 auto;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 72px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
   }
 
   .hero-eyebrow {
@@ -94,12 +106,13 @@
 
   .hero-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.6rem, 8vw, 7rem);
+    font-size: clamp(3.2rem, 5.5vw, 5.8rem);
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.01em;
     color: var(--ink);
     margin-bottom: 6px;
+    position: relative;
   }
 
   .hero-name em {
@@ -113,7 +126,7 @@
 
   .hero-tagline {
     margin-top: 28px;
-    max-width: 520px;
+    max-width: 480px;
     color: var(--warm-mid);
     font-size: 1rem;
     font-weight: 300;
@@ -125,6 +138,40 @@
     display: flex;
     gap: 20px;
     align-items: center;
+  }
+
+  /* HERO PHOTO */
+  .hero-photo-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-photo-frame {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 3 / 4;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+      6px 12px 36px rgba(28, 25, 23, 0.13),
+      0 2px 6px rgba(28, 25, 23, 0.06);
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+  }
+
+  .hero-photo-frame:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      8px 20px 48px rgba(28, 25, 23, 0.16),
+      0 4px 10px rgba(28, 25, 23, 0.07);
+  }
+
+  .hero-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
   }
 
   .btn-primary {
@@ -246,7 +293,6 @@
   .project-card {
     background: var(--cream);
     padding: 36px 32px;
-    transition: background 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
     cursor: default;
   }
   .project-card:hover {
@@ -273,10 +319,7 @@
     margin-bottom: 12px;
   }
 
-  .project-title em {
-    font-style: italic;
-    color: var(--rust);
-  }
+  .project-title em { font-style: italic; color: var(--rust); }
 
   .project-desc {
     font-size: 0.87rem;
@@ -300,11 +343,7 @@
   .project-link:hover { border-color: var(--ink); }
 
   /* ACCOMPLISHMENTS */
-  .accomplishments-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .accomplishments-list { display: flex; flex-direction: column; gap: 0; }
 
   .accomplishment-row {
     display: grid;
@@ -407,14 +446,10 @@
     font-weight: 300;
   }
 
-  /* SHINE on hero name — clean single sweep */
+  /* SHINE on hero name */
   @keyframes shine-sweep {
     0%   { left: -60%; opacity: 1; }
     100% { left: 130%; opacity: 1; }
-  }
-
-  .hero-name {
-    position: relative;
   }
 
   .hero-name .shine-text {
@@ -443,9 +478,6 @@
     pointer-events: none;
   }
 
-  /* SMOOTH scroll-linked transitions */
-  html { scroll-behavior: smooth; }
-
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
   a, button { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -463,37 +495,36 @@
     transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .fade-in.visible {
-    opacity: 1;
-    transform: none;
-  }
+  .fade-in.visible { opacity: 1; transform: none; }
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 18px 24px; }
-    section, #home { padding: 80px 24px 60px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .accomplishment-row { grid-template-columns: 70px 1fr; }
-    .acc-org { display: none; }
-    footer { padding: 20px 24px; }
-  }
   .word-fade {
     opacity: 0;
     transform: translateY(10px);
     display: inline-block;
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .word-fade.visible {
-    opacity: 1;
-    transform: none;
-  }
-  .word-sep {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .word-sep.visible {
-    opacity: 1;
+  .word-fade.visible { opacity: 1; transform: none; }
+  .word-sep { opacity: 0; transition: opacity 0.3s ease; }
+  .word-sep.visible { opacity: 1; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    section, #home { padding: 80px 24px 60px; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .hero-photo-col { order: -1; }
+    .hero-photo-frame {
+      max-width: 220px;
+      margin: 0 auto;
+    }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .accomplishment-row { grid-template-columns: 70px 1fr; }
+    .acc-org { display: none; }
+    footer { padding: 20px 24px; }
   }
 </style>
 </head>
@@ -511,17 +542,27 @@
 
 <!-- HERO -->
 <section id="home">
-  <p class="hero-eyebrow fade-in">Princeton University · Class of 2027</p>
-  <h1 class="hero-name fade-in">
-    <span class="shine-text">Skyé Lowe</span>
-    <em><span class="word-fade">researcher</span><span class="word-sep">, </span><span class="word-fade">storyteller</span><span class="word-sep">, </span><span class="word-fade">strategist</span></em>
-  </h1>
-  <p class="hero-tagline fade-in">
-    Psychology major. Pre-law. Fluent French speaker. I work at the intersection of behavioral science, creative storytelling, and strategic communication — finding the story in the data, and the argument in the story.
-  </p>
-  <div class="hero-cta-row fade-in">
-    <a href="#projects" class="btn-primary">View My Work</a>
-    <a href="#contact" class="btn-ghost">Get in Touch</a>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow fade-in">Princeton University · Class of 2027</p>
+      <h1 class="hero-name fade-in">
+        <span class="shine-text">Skyé Lowe</span>
+        <em><span class="word-fade">researcher</span><span class="word-sep">, </span><span class="word-fade">storyteller</span><span class="word-sep">, </span><span class="word-fade">strategist</span></em>
+      </h1>
+      <p class="hero-tagline fade-in">
+        Psychology major. Pre-law. Fluent French speaker. I work at the intersection of behavioral science, creative storytelling, and strategic communication — finding the story in the data, and the argument in the story.
+      </p>
+      <div class="hero-cta-row fade-in">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-col fade-in">
+      <div class="hero-photo-frame">
+        <img src="skye_lowe.png" alt="Skyé Lowe" />
+      </div>
+    </div>
   </div>
 </section>
 
@@ -737,7 +778,6 @@
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // staggered word fade for hero tagline
   const words = document.querySelectorAll('.word-fade');
   const seps = document.querySelectorAll('.word-sep');
   setTimeout(() => {
