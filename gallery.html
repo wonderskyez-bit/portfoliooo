@@ -108,6 +108,7 @@
   .gallery-item {
     break-inside: avoid;
     margin-bottom: 16px;
+    aspect-ratio: 3 / 4; 
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
@@ -121,7 +122,9 @@
   }
   .gallery-item img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     display: block;
   }
   .gallery-item .overlay {
