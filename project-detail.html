@@ -221,7 +221,16 @@
   .fade-in.visible { opacity: 1; transform: none; }
 
   @media (max-width: 768px) {
-    nav { padding: 18px 24px; }
+    nav {
+      padding: 18px 24px;
+      gap: 16px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    .nav-back { white-space: nowrap; }
     .page-header { padding: 120px 24px 40px; }
     .projects-detail-list { padding: 0 24px 80px; }
     .project-detail-item { grid-template-columns: 1fr; gap: 24px; }
