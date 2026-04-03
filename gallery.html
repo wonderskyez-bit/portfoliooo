@@ -223,8 +223,22 @@
 
   @media (max-width: 900px) { .gallery-grid { columns: 2; } }
   @media (max-width: 768px) {
-    nav { padding: 18px 24px; }
-    .nav-links { gap: 20px; }
+    nav {
+      padding: 18px 24px;
+      gap: 16px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    .nav-links {
+      gap: 20px;
+      flex-wrap: nowrap;
+      min-width: max-content;
+      padding-bottom: 2px;
+    }
+    .nav-links a { white-space: nowrap; }
     .page-header { padding: 120px 24px 40px; flex-direction: column; gap: 8px; }
     .gallery-section { padding: 32px 24px 80px; }
     .gallery-grid { columns: 2; column-gap: 10px; }
